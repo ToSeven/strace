@@ -287,7 +287,7 @@ static const nla_decoder_t ifla_info_data_bridge_nla_decoders[] = {
 	[IFLA_BR_TCN_TIMER]			= decode_nla_u64,
 	[IFLA_BR_TOPOLOGY_CHANGE_TIMER]		= decode_nla_u64,
 	[IFLA_BR_GC_TIMER]			= decode_nla_u64,
-	[IFLA_BR_GROUP_ADDR]			= NULL, /* MAC address */
+	[IFLA_BR_GROUP_ADDR]			= decode_nla_hwaddr,
 	[IFLA_BR_FDB_FLUSH]			= NULL, /* unspecified */
 	[IFLA_BR_MCAST_ROUTER]			= decode_nla_u8,
 	[IFLA_BR_MCAST_SNOOPING]		= decode_nla_u8,
@@ -843,8 +843,8 @@ decode_ifla_prop_list(struct tcb *const tcp,
 
 
 static const nla_decoder_t ifinfomsg_nla_decoders[] = {
-	[IFLA_ADDRESS]		= NULL, /* unimplemented */
-	[IFLA_BROADCAST]	= NULL, /* unimplemented */
+	[IFLA_ADDRESS]		= decode_nla_hwaddr,
+	[IFLA_BROADCAST]	= decode_nla_hwaddr,
 	[IFLA_IFNAME]		= decode_nla_str,
 	[IFLA_MTU]		= decode_nla_u32,
 	[IFLA_LINK]		= decode_nla_u32,
